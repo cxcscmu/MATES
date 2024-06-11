@@ -134,7 +134,7 @@ def main(
     else:
         fabric.seed_everything(workers=True)  # each process gets a different seed (DDP)
 
-    config = Config.from_name(model_name)
+    config = Config.from_name(f"{model_name}-1024")
     fabric.print(f"Loading model with {config.__dict__}")
     t0 = time.perf_counter()
     if fsdp:

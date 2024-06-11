@@ -1,0 +1,1 @@
+torchrun --nproc_per_node 8 src/select_data/train_data_influence_model.py --model_name $model_name --ckpt $ckpt

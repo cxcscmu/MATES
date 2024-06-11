@@ -1,4 +1,5 @@
 python src/pretrain/pretrain.py \
+    --devices 8 \
     --model_name $model_name \
     --method $method \
     --ckpt $ckpt \

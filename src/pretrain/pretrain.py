@@ -2,7 +2,6 @@ from lightning.fabric.utilities import ThroughputMonitor, measure_flops
 from transformers.trainer_pt_utils import IterableDatasetShard
 from lightning.fabric.strategies import FSDPStrategy
 from torch.utils.data import DataLoader
-from transformers import AutoTokenizer
 from typing import Optional, Union
 from pathlib import Path
 import lightning as L
@@ -73,8 +72,8 @@ def setup(
     ckpt: int = 0,
     precision: Optional[str] = None,
     resume: Union[bool, Path] = False,
-    data_path: Optional[Path] = None,
-    out_path: Optional[Path] = None,
+    data_path: Path = None,
+    out_path: Path = None,
     decay: bool = False,
 ) -> None:
     precision = precision or get_default_supported_precision(training=True)
@@ -146,11 +145,6 @@ def main(
             model = GPT(config)
     model.apply(model._init_weights)
 
-    tokenizer = AutoTokenizer.from_pretrained(
-        "togethercomputer/RedPajama-INCITE-Base-7B-v0.1"
-    )
-    tokenizer.model_max_length = model.max_seq_length
-
     fabric.print(f"Time to instantiate model: {time.perf_counter() - t0:.02f} seconds.")
     fabric.print(f"Total parameters {num_parameters(model):,}")
 
@@ -164,7 +158,7 @@ def main(
     )
     optimizer = fabric.setup_optimizers(optimizer)
 
-    train_data = load_datasets(data_dir, tokenizer, max_seq_length=model.max_seq_length)
+    train_data = load_datasets(data_dir)
     train_data = IterableDatasetShard(
         train_data,
         batch_size=micro_batch_size,

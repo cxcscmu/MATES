@@ -4,7 +4,6 @@ from lightning.fabric.strategies import FSDPStrategy
 from torch.nn.utils.rnn import pad_sequence
 from typing import Optional, Tuple, Union
 from torch.utils.data import DataLoader
-from transformers import AutoTokenizer
 from pathlib import Path
 from tqdm import tqdm
 import lightning as L
@@ -116,11 +115,6 @@ def main(
         with fabric.init_module(empty_init=False):
             model = GPT(config)
     model.apply(model._init_weights)
-
-    tokenizer = AutoTokenizer.from_pretrained(
-        "togethercomputer/RedPajama-INCITE-Base-7B-v0.1"
-    )
-    tokenizer.model_max_length = model.max_seq_length
 
     fabric.print(f"Time to instantiate model: {time.perf_counter() - t0:.02f} seconds.")
     fabric.print(f"Total parameters {num_parameters(model):,}")

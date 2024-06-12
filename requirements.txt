@@ -4,7 +4,7 @@ lightning @ git+https://github.com/Lightning-AI/lightning@6dfa5cca9de5c28548eef5
 jsonargparse[signatures]
 bitsandbytes==0.41.0
 scipy
-transformers
+transformers==4.32.1
 sentencepiece
 tokenizers
 datasets

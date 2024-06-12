@@ -57,9 +57,9 @@ class BertForSequenceClassification(BertPreTrainedModel):
 
         bs = input_ids.size(0)
         outputs = self.bert(
-            input_ids.reshape(bs * 4, -1),
-            attention_mask=attention_mask.reshape(bs * 4, -1),
-            token_type_ids=token_type_ids.reshape(bs * 4, -1),
+            input_ids.reshape(bs * 2, -1),
+            attention_mask=attention_mask.reshape(bs * 2, -1),
+            token_type_ids=token_type_ids.reshape(bs * 2, -1),
             position_ids=position_ids,
             head_mask=head_mask,
             inputs_embeds=inputs_embeds,

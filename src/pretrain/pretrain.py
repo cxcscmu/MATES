@@ -285,7 +285,7 @@ def train(
                     }
                 )
         if not is_accumulating and state["step_count"] % save_interval == 0:
-            checkpoint_path = out_dir / f"iter-{iter_num:06d}-ckpt.pth"
+            checkpoint_path = out_dir / f"iter-{iter_num}-ckpt.pth"
             fabric.print(f"Saving checkpoint to {str(checkpoint_path)!r}")
             fabric.save(checkpoint_path, state)
 

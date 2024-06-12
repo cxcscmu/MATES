@@ -84,7 +84,7 @@ bash scripts/pretrain.sh
 ```bash
 model_name=pythia-410m \
 method=random \
-ckpt=080000 \
+ckpt=80000 \
 bash scripts/probe_oracle_data_influence.sh
 ```
 
@@ -94,7 +94,7 @@ bash scripts/probe_oracle_data_influence.sh
 
 ```bash
 model_name=pythia-410m \
-ckpt=080000 \
+ckpt=80000 \
 bash scripts/train_data_influence_model.sh
 ```
 
@@ -102,7 +102,7 @@ bash scripts/train_data_influence_model.sh
 
 ```bash
 model_name=pythia-410m \
-ckpt=080000 \
+ckpt=80000 \
 bash scripts/predict_data_influence.sh
 ```
 
@@ -131,7 +131,7 @@ bash scripts/pretrain.sh
 ```bash
 model_name=pythia-410m \
 method=random \
-ckpt=081600 \
+ckpt=81600 \
 bash scripts/eval.sh
 ```
 

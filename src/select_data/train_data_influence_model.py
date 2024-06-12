@@ -12,7 +12,7 @@ import argparse
 import os
 
 
-def load_datasets_tar(oracle_dir):
+def load_oracle(oracle_dir):
     dataset = datasets.concatenate_datasets(
         [datasets.load_from_disk(f"{oracle_dir}/{i}") for i in range(8)]
     )
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(args)
 
-    train_dataset, eval_dataset = load_datasets_tar(
+    train_dataset, eval_dataset = load_oracle(
         f"data/c4/{args.model_name}/{args.ckpt}-oracle"
     )
     mean_value = np.mean(np.array(train_dataset["scores"])[:, 0])
@@ -85,6 +85,7 @@ if __name__ == "__main__":
 
     # Load model for sequence classification with a regression head
     model = BertForSequenceClassification.from_pretrained(
+        # TODO: Resume training from the last checkpoint
         "bert-base-uncased",
         problem_type="regression",
         num_labels=1,

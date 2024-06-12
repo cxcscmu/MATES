@@ -19,8 +19,6 @@ class BertForSequenceClassification(BertPreTrainedModel):
             else config.hidden_dropout_prob
         )
         self.dropout = nn.Dropout(classifier_dropout)
-        # self.mlp = nn.Linear(config.hidden_size, config.hidden_size * 10)
-        # self.gelu = nn.GELU()
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
 
         # Initialize weights and apply final processing

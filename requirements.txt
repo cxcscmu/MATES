@@ -1,16 +1,18 @@
+# pretrain
 torch>=2.1.0
 lightning @ git+https://github.com/Lightning-AI/lightning@6dfa5cca9de5c28548eef5582a53c483b0eda66a
-jsonargparse[signatures]# CLI
-bitsandbytes==0.41.0    # quantization
-scipy                   # required by bitsandbytes
-sentencepiece           # pythia, falcon, redpajama
-tokenizers              # llama-based models
-datasets                # quantize/gptq.py
-zstandard               # scripts/prepare_redpajama.py, scripts/prepare_starcoder.py
-pandas                  # scripts/prepare_csv.py, scripts/prepare_starcoder.py
-pyarrow                 # scripts/prepare_starcoder.py
-tensorboard             # pretrain/tinyllama.py
-torchmetrics            # pretrain/tinyllama.py
+jsonargparse[signatures]
+bitsandbytes==0.41.0
+scipy
+transformers
+sentencepiece
+tokenizers
+datasets
+zstandard
+pandas
+pyarrow
+tensorboard
+torchmetrics
 # eval
 git+https://github.com/EleutherAI/lm-evaluation-harness.git@115206dc89dad67b8beaa90051fb52db77f0a529
 lightning[data] @ git+https://github.com/Lightning-AI/lightning@6dfa5cca9de5c28548eef5582a53c483b0eda66a

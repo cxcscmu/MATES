@@ -142,10 +142,10 @@ bash scripts/eval.sh
 Please cite our paper if you use MATES in your work:
 
 ```bibtex
-@inproceedings{yu2024mates,
+@article{yu2024mates,
    title={MATES: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models},
    author={Yu, Zichun and Das, Spandan and Xiong, Chenyan},
-   journal={arXiv preprint 2406.06046},
+   journal={arXiv preprint arXiv:2406.06046},
    year={2024}
 }
 ```

@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     args = TrainingArguments(
         f"data/c4/{args.model_name}/{args.ckpt}-data_influence_model",
-        eval_strategy="steps",
+        evaluation_strategy="steps",
         save_strategy="steps",
         learning_rate=5e-5,
         per_device_train_batch_size=batch_size,

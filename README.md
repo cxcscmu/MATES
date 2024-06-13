@@ -1,4 +1,4 @@
-# MATES<img src="assets/avatar.png" alt="drawing" style="height: 1em;">: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models
+# MATES<img src="assets/avatar.png" alt="drawing" style="height: 0.9em;">: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models
 
 This is the official repository for [MATES: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models](https://arxiv.org/pdf/2406.06046). The implementation is mainly based on [LitGPT](https://github.com/Lightning-AI/litgpt), which is easy to begin with, use, and modify.
 

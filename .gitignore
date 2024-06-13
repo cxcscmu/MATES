@@ -1,6 +1,7 @@
 __pycache__
 .vscode/
 results/
+wandb/
 data/
 out/
 .DS_Store

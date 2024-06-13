@@ -60,6 +60,7 @@ Our pretraining is run stage by stage to facilitate the model-aware data selecti
 model_name=pythia-410m \
 method=random \
 ckpt=0 \
+decay=false \
 bash scripts/pretrain.sh
 ```
 
@@ -71,6 +72,7 @@ To resume the pretraining from previous steps (e.g., 10k), you can run:
 model_name=pythia-410m \
 method=random \
 ckpt=80000 \
+decay=false \
 bash scripts/pretrain.sh
 ```
 

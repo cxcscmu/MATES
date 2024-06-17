@@ -107,6 +107,8 @@ def setup(
         max_iters = 200 * gradient_accumulation_steps
         global stable_iters
         stable_iters = ckpt
+        global save_interval
+        save_interval = 200
     fabric.print(hparams)
     fabric.launch(
         main,

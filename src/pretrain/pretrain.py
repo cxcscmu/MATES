@@ -36,15 +36,15 @@ data_dir = Path("data")
 out_dir = Path("out")
 
 # Hyperparameters
-log_interval = 400
+log_interval = 200
 save_interval = 5000
 learning_rate = 1e-3
 batch_size = 64
-micro_batch_size = 8
+micro_batch_size = 16
 gradient_accumulation_steps = batch_size // micro_batch_size
 assert gradient_accumulation_steps > 0
 max_iters = (
-    50000 * gradient_accumulation_steps
+    10000 * gradient_accumulation_steps
 )  # num_epochs * (epoch_size // micro_batch_size) // devices
 weight_decay = 1e-1
 beta1 = 0.9
@@ -320,7 +320,7 @@ def get_wsd_lr(it: int) -> float:
         return learning_rate * it / warmup_iters
     if it < stable_iters:
         return learning_rate
-    return learning_rate * math.pow(0.5, (it - stable_iters) / 400)
+    return learning_rate * math.pow(0.5, (it - stable_iters) / 200)
 
 
 if __name__ == "__main__":

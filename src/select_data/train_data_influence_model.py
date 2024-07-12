@@ -27,7 +27,7 @@ def load_oracle(oracle_dir):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="pythia-410m")
-    parser.add_argument("--ckpt", type=int, default=80000)
+    parser.add_argument("--ckpt", type=int, default=40000)
 
     args = parser.parse_args()
     print(args)

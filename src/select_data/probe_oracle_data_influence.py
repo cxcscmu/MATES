@@ -55,7 +55,7 @@ def setup(
     devices: int = 1,
     model_name: str = "pythia-410m",
     method: str = "random",
-    ckpt: int = 80000,
+    ckpt: int = 40000,
     rank: int = 0,
     precision: Optional[str] = None,
     resume: Union[bool, Path] = False,

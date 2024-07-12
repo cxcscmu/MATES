@@ -1,6 +1,6 @@
 # MATES<img src="assets/avatar.png" alt="drawing" style="height: 1em;">: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models
 
-<a href='https://huggingface.co/yuzc19/pythia-410m-mates'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Main Model-blue'> <a href='https://huggingface.co/yuzc19/bert-base-uncased-data-influence-model-lambada'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Data Influence Model-blue'>
+<p align="center"><a href='https://huggingface.co/yuzc19/pythia-410m-mates'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Main Model-blue'> <a href='https://huggingface.co/yuzc19/bert-base-uncased-data-influence-model-lambada'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Data Influence Model-blue'></p>
 
 This is the official repository for [MATES: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models](https://arxiv.org/pdf/2406.06046). The implementation is mainly based on [LitGPT](https://github.com/Lightning-AI/litgpt), which is easy to begin with, use, and modify.
 
@@ -73,22 +73,24 @@ To resume the pretraining from previous steps (e.g., 10k), you can run:
 ```bash
 model_name=pythia-410m \
 method=random \
-ckpt=80000 \
+ckpt=40000 \
 decay=false \
 bash scripts/pretrain.sh
 ```
 
-- `ckpt=80000` denotes our gradient accumulation step is 8.
+- `ckpt=40000` denotes our gradient accumulation step is 4.
 - `method=random` is the random data selection. You can replace it with `mates` for MATES after the first 10k steps.
 
 ### 3.2 Data Selection
+
+After the first 10k steps, we can start the MATES data selection process every 10k steps. One data selection process consists of four steps:
 
 1️⃣ Get oracle data influence:
 
 ```bash
 model_name=pythia-410m \
 method=random \
-ckpt=80000 \
+ckpt=40000 \
 bash scripts/probe_oracle_data_influence.sh
 ```
 
@@ -98,7 +100,7 @@ bash scripts/probe_oracle_data_influence.sh
 
 ```bash
 model_name=pythia-410m \
-ckpt=80000 \
+ckpt=40000 \
 bash scripts/train_data_influence_model.sh
 ```
 
@@ -106,17 +108,17 @@ bash scripts/train_data_influence_model.sh
 
 ```bash
 model_name=pythia-410m \
-ckpt=80000 \
+ckpt=40000 \
 bash scripts/predict_data_influence.sh
 ```
 
 4️⃣ Select the training data for the next 10k steps:
 
 ```bash
-python src/select_data/select_data.py --model_name pythia-410m --method mates --ckpt 80000
+python src/select_data/select_data.py --model_name pythia-410m --method mates --ckpt 40000
 ```
 
-- The selected data will be saved in `data/c4/pythia-410m/mates/80000`.
+- The selected data will be saved in `data/c4/pythia-410m/mates/40000`.
 
 ### 3.3 Evaluation
 
@@ -124,7 +126,7 @@ python src/select_data/select_data.py --model_name pythia-410m --method mates --
 
 ```bash
 model_name=pythia-410m \
-method=random \
+method=mates \
 ckpt=80000 \
 decay=true \
 bash scripts/pretrain.sh
@@ -134,8 +136,8 @@ bash scripts/pretrain.sh
 
 ```bash
 model_name=pythia-410m \
-method=random \
-ckpt=81600 \
+method=mates \
+ckpt=80800 \
 bash scripts/eval.sh
 ```
 

@@ -94,7 +94,7 @@ ckpt=40000 \
 bash scripts/probe_oracle_data_influence.sh
 ```
 
-- For the 10k checkpoint, `methods=random`, but for the following, `methods=mates`.
+- For the 10k checkpoint, `method=random`, but for the following, `method=mates`.
 
 2️⃣ Train data influence model:
 

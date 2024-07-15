@@ -66,7 +66,7 @@ if __name__ == "__main__":
     # Hard coding to be fixed
     data_files = [
         f"data/train-{str(i).zfill(5)}-of-00891*"
-        for i in range(int(args.ckpt / 800), int(args.ckpt / 800) + 100)
+        for i in range(int(args.ckpt / 400), int(args.ckpt / 400) + 100)
     ]
     dataset = load_dataset(
         "loganengstrom/dsdm-candidate-c4",

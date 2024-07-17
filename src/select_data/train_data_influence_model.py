@@ -92,7 +92,7 @@ if __name__ == "__main__":
     )
 
     # Training arguments
-    batch_size = 16
+    batch_size = 32
 
     args = TrainingArguments(
         f"data/c4/{args.model_name}/{args.ckpt}-data_influence_model",
@@ -100,7 +100,6 @@ if __name__ == "__main__":
         save_strategy="steps",
         learning_rate=5e-5,
         per_device_train_batch_size=batch_size,
-        gradient_accumulation_steps=4,
         per_device_eval_batch_size=batch_size,
         num_train_epochs=5,
         logging_steps=10,

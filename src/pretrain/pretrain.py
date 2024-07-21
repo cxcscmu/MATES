@@ -110,6 +110,8 @@ def setup(
         global save_interval
         save_interval = 200
     fabric.print(hparams)
+    if ckpt == 40000:
+        method = "random"
     fabric.launch(
         main,
         resume=(

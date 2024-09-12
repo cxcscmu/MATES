@@ -18,16 +18,21 @@ def get_candidate_dataset(args):
     )["train"]
 
 
-def mates_select(dataset_size, selection_size, args):
-    dataset = datasets.concatenate_datasets(
-        [
-            datasets.load_from_disk(
-                f"data/c4/{args.model_name}/{args.ckpt}-data_influence_model-prediction/{i}"
-            )
-            for i in range(8)
-        ]
-    )
-    metrics = np.array(dataset["prediction"]).reshape(-1)
+def select(dataset_size, selection_size, args):
+    if args.method == "mates":
+        dataset = datasets.concatenate_datasets(
+            [
+                datasets.load_from_disk(
+                    f"data/c4/{args.model_name}/{args.ckpt}-data_influence_model-prediction/{i}"
+                )
+                for i in range(8)
+            ]
+        )
+        metrics = np.array(dataset["prediction"]).reshape(-1)
+    else:
+        metrics = np.zeros(dataset_size)
+    print(">> Metrics shape:", metrics.shape)
+    metrics = metrics / args.temp
     # Gumbel-Top-$k$ algorithm
     rng = np.random.default_rng()
     gumbel_noise = rng.gumbel(size=len(metrics))
@@ -35,21 +40,9 @@ def mates_select(dataset_size, selection_size, args):
     return np.argpartition(metrics, selection_size)[:selection_size]
 
 
-def random_select(dataset_size, selection_size, args):
-    rng = np.random.default_rng()
-    return rng.choice(dataset_size, size=(selection_size,), replace=False)
-
-
-METHODS = {
-    "random": random_select,
-    "mates": mates_select,
-}
-
-
 def get_indices(dataset_size, selection_size, args):
     print(f">> Selecting {selection_size} indices for", args.method)
-    select_it = METHODS[args.method]
-    ls = select_it(dataset_size, selection_size, args)
+    ls = select(dataset_size, selection_size, args)
     indices = list(map(int, ls))
     return indices
 
@@ -59,6 +52,7 @@ if __name__ == "__main__":
     parser.add_argument("--model_name", type=str, default="pythia-410m")
     parser.add_argument("--method", type=str, default="random")
     parser.add_argument("--ckpt", type=int, default=0)
+    parser.add_argument("--temp", type=float, default=0.5)
 
     args = parser.parse_args()
     print(args)

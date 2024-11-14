@@ -151,7 +151,7 @@ Please cite our paper if you use MATES in your work:
 @inproceedings{yu2024mates,
    title={MATES: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models},
    author={Yu, Zichun and Das, Spandan and Xiong, Chenyan},
-   booktitle = {NeurIPS},
+   booktitle={NeurIPS},
    year={2024}
 }
 ```

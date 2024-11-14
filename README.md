@@ -1,4 +1,4 @@
-# MATES<img src="assets/avatar.png" alt="drawing" style="height: 1em;">: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models
+# [NeurIPS 2024] MATES<img src="assets/avatar.png" alt="drawing" style="height: 1em;">: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models
 
 <p align="center"><a href='https://huggingface.co/yuzc19/pythia-410m-mates'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Main Model-blue'> <a href='https://huggingface.co/yuzc19/bert-base-uncased-data-influence-model-lambada'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Data Influence Model-blue'></p>
 
@@ -148,10 +148,10 @@ bash scripts/eval.sh
 Please cite our paper if you use MATES in your work:
 
 ```bibtex
-@article{yu2024mates,
+@inproceedings{yu2024mates,
    title={MATES: Model-Aware Data Selection for Efficient Pretraining with Data Influence Models},
    author={Yu, Zichun and Das, Spandan and Xiong, Chenyan},
-   journal={arXiv preprint arXiv:2406.06046},
+   booktitle = {NeurIPS},
    year={2024}
 }
 ```
